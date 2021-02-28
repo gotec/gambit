@@ -1,0 +1,6 @@
+pandas
+unidecode
+python-levenshtein
+pyjarowinkler
+tqdm>=4.27.0
+numpy
