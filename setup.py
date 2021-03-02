@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
     install_requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="gambit",
+    name="gambit-disambig",
     version=__version__,
     author="Christoph Gote",
     author_email="cgote@ethz.ch",
