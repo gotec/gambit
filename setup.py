@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import setuptools
-from git2net import __version__
+from gambit import __version__
 
 with open("README.md", "r") as f:
     long_description = f.read()
