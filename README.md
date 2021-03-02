@@ -21,7 +21,7 @@ Due to GDPR we cannot publish the manually disambiguated ground-truth data on ze
 
 All functions of `gambit`have been tested on Ubuntu, Mac OS, and Windows.
 
-## How to cite git2net
+## How to cite gambit
 
 ```
 XXX
