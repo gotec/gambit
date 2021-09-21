@@ -33,6 +33,7 @@ All functions of `gambit` have been tested on Ubuntu, Mac OS, and Windows.
   number={},
   pages={80-84},
   doi={10.1109/MSR52588.2021.00021}
+}
 ```
 
 ## License
