@@ -24,14 +24,15 @@ All functions of `gambit` have been tested on Ubuntu, Mac OS, and Windows.
 ## How to cite gambit
 
 ```
-@misc{gote2021gambit,
-      title={gambit -- An Open Source Name Disambiguation Tool for Version Control Systems}, 
-      author={Christoph Gote and Christian Zingg},
-      year={2021},
-      eprint={2103.05666},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE}
-}
+@INPROCEEDINGS{gote2021gambit,
+  author={Gote, Christoph and Zingg, Christian},
+  booktitle={2021 IEEE/ACM 18th International Conference on Mining Software Repositories (MSR)}, 
+  title={gambit – An Open Source Name Disambiguation Tool for Version Control Systems}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={80-84},
+  doi={10.1109/MSR52588.2021.00021}
 ```
 
 ## License
