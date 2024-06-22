@@ -1,0 +1,2 @@
+*.pyc
+/gambit_disambig.egg-info/*
