@@ -138,19 +138,19 @@ def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw'):
     else:
         assert False
 
-    name1 = row1['name']
-    first_name1 = row1['first_name']
-    penultimate_name1 = row1['penultimate_name']
-    last_name1 = row1['last_name']
-    email1 = row1['email']
-    email_base1 = row1['email_base']
+    name1 = str(row1['name'])
+    first_name1 = str(row1['first_name'])
+    penultimate_name1 = str(row1['penultimate_name'])
+    last_name1 = str(row1['last_name'])
+    email1 = str(row1['email'])
+    email_base1 = str(row1['email_base'])
 
-    name2 = row2['name']
-    first_name2 = row2['first_name']
-    penultimate_name2 = row2['penultimate_name']
-    last_name2 = row2['last_name']
-    email2 = row2['email']
-    email_base2 = row2['email_base']
+    name2 = str(row2['name'])
+    first_name2 = str(row2['first_name'])
+    penultimate_name2 = str(row2['penultimate_name'])
+    last_name2 = str(row2['last_name'])
+    email2 = str(row2['email'])
+    email_base2 = str(row2['email_base'])
 
     if (name1 and len(name1) >= name_thresh) and (name2 and len(name2) >= name_thresh):
         sims.append(sim_f(name1, name2))
@@ -258,7 +258,7 @@ def gambit(authors, thresh=0.95, sim='lev'):
     with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation') as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
-                authors['author_id'][idx1] = next_id
+                authors.loc[idx1, 'author_id'] = next_id
                 next_id += 1
 
             for idx2, row2 in authors[idx1+1:].iterrows():
@@ -268,7 +268,7 @@ def gambit(authors, thresh=0.95, sim='lev'):
                         authors.loc[authors.author_id == authors.loc[idx1, 'author_id'], 'author_id'] = min_id
                         authors.loc[authors.author_id == authors.loc[idx2, 'author_id'], 'author_id'] = min_id
                     elif pd.notnull(authors.loc[idx1, 'author_id']):
-                        authors['author_id'][idx2] = authors.loc[idx1, 'author_id']
+                        authors.loc[idx2, 'author_id'] = authors.loc[idx1, 'author_id']
                     else:
                         assert False
                 pbar.update(1)
