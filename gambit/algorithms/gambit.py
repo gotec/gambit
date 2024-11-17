@@ -242,7 +242,7 @@ def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw', generic_
 # -------------------------------------------------------------------
 
 
-def gambit(authors, thresh=0.95, sim='lev'):
+def gambit(authors, thresh=0.95, sim='lev', generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name'].apply(clean_name)
@@ -262,7 +262,7 @@ def gambit(authors, thresh=0.95, sim='lev'):
                 next_id += 1
 
             for idx2, row2 in authors[idx1+1:].iterrows():
-                if compare_rows(idx1, idx2, row1, row2, authors, thresh=thresh, sim=sim):
+                if compare_rows(idx1, idx2, row1, row2, authors, thresh=thresh, sim=sim, generic_usernames=generic_usernames):
                     if pd.notnull(authors.loc[idx1, 'author_id']) and pd.notnull(authors.loc[idx2, 'author_id']):
                         min_id = min(authors.loc[idx1, 'author_id'], authors.loc[idx2, 'author_id'])
                         authors.loc[authors.author_id == authors.loc[idx1, 'author_id'], 'author_id'] = min_id
