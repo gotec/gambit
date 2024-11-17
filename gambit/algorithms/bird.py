@@ -136,7 +136,7 @@ def compare_rows(idx1, idx2, row1, row2, thresh=.90, generic_usernames=['git','g
 # -------------------------------------------------------------------
 
 
-def bird(authors, thresh=.95, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
+def bird(authors, thresh=.95, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name'].apply(clean_name)
@@ -148,7 +148,7 @@ def bird(authors, thresh=.95, generic_usernames=['git','github','root','admin','
     authors['author_id'] = None
     next_id = 0
 
-    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation') as pbar:
+    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', disable=not show_pbar) as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
                 authors.loc[idx1,'author_id'] = next_id
