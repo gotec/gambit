@@ -9,7 +9,7 @@ def get_email_base(s):
     return s
 
 
-def compare_rows(idx1, idx2, row1, row2, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
+def compare_rows(idx1, idx2, row1, row2, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
     tresh = 3
 
     if (len(str(row1.name)) >= tresh) and (len(str(row2.name)) >= tresh) and (row1.name == row2.name):
@@ -27,7 +27,7 @@ def compare_rows(idx1, idx2, row1, row2, generic_usernames=['git','github','root
 # -------------------------------------------------------------------
 
 
-def simple(authors, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
+def simple(authors, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name']
@@ -37,7 +37,7 @@ def simple(authors, generic_usernames=['git','github','root','admin','administra
     authors['author_id'] = None
     next_id = 0
 
-    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', diasble=not show_pbar) as pbar:
+    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', disable=not show_pbar) as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
                 authors.loc[idx1,'author_id'] = next_id
