@@ -125,7 +125,7 @@ def lev_sim(s1, s2):
     return 1 - lev_dist(s1, s2)/max(len(s1), len(s2))
 
 
-def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw'):
+def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw', generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
     name_thresh = 3
     email_thresh = 3
 
@@ -205,8 +205,8 @@ def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw'):
                             sim_f(last_name1, first_name2)))
 
     # comparing email base leads to many false positives e.g. with emails following first_name@last_name
-    if (email_base1 and len(email_base1) >= email_thresh) and \
-       (email_base2 and len(email_base2) >= email_thresh):
+    if (email_base1 and len(email_base1) >= email_thresh and email_base1 not in generic_usernames) and \
+       (email_base2 and len(email_base2) >= email_thresh and email_base2 not in generic_usernames):
         sims.append(2*(email1 == email2))
         sims.append(sim_f(email_base1, email_base2))
 
@@ -214,8 +214,8 @@ def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw'):
        (last_name1 and len(last_name1) >= name_thresh) and \
        (first_name2 and len(first_name2) >= name_thresh) and \
        (last_name2 and len(last_name2) >= name_thresh) and \
-       (email_base1 and len(email_base1) >= email_thresh) and \
-       (email_base2 and len(email_base2) >= email_thresh):
+       (email_base1 and len(email_base1) >= email_thresh and email_base1 not in generic_usernames) and \
+       (email_base2 and len(email_base2) >= email_thresh and email_base2 not in generic_usernames):
         if first_name2 != last_name2:
             sims.append(email_base1.find(first_name2[0] + last_name2) != -1)
 
