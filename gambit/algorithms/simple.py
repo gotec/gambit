@@ -40,7 +40,7 @@ def simple(authors, generic_usernames=['git','github','root','admin','administra
     with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation') as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
-                authors['author_id'][idx1] = next_id
+                authors.loc[idx1,'author_id'] = next_id
                 next_id += 1
 
             for idx2, row2 in authors[idx1+1:].iterrows():
@@ -50,7 +50,7 @@ def simple(authors, generic_usernames=['git','github','root','admin','administra
                         authors.loc[authors.author_id == authors.loc[idx1, 'author_id'], 'author_id'] = min_id
                         authors.loc[authors.author_id == authors.loc[idx2, 'author_id'], 'author_id'] = min_id
                     elif pd.notnull(authors.loc[idx1, 'author_id']):
-                        authors['author_id'][idx2] = authors.loc[idx1, 'author_id']
+                        authors.loc[idx2,'author_id'] = authors.loc[idx1, 'author_id']
                     else:
                         assert False
                 pbar.update(1)
