@@ -255,7 +255,7 @@ def gambit(authors, thresh=0.95, sim='lev', generic_usernames=['git','github','r
     authors['author_id'] = None
     next_id = 0
 
-    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', diable=not show_pbar) as pbar:
+    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', disable=not show_pbar) as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
                 authors.loc[idx1, 'author_id'] = next_id
