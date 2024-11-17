@@ -242,7 +242,7 @@ def compare_rows(idx1, idx2, row1, row2, authors, thresh=.90, sim='jw', generic_
 # -------------------------------------------------------------------
 
 
-def gambit(authors, thresh=0.95, sim='lev', generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
+def gambit(authors, thresh=0.95, sim='lev', generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name'].apply(clean_name)
@@ -255,7 +255,7 @@ def gambit(authors, thresh=0.95, sim='lev', generic_usernames=['git','github','r
     authors['author_id'] = None
     next_id = 0
 
-    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation') as pbar:
+    with tqdm.tqdm(total=int(len(authors)*(len(authors)-1)/2), desc='author identity disambiguation', diable=not show_pbar) as pbar:
         for idx1, row1 in authors.iterrows():
             if pd.isnull(authors.loc[idx1, 'author_id']):
                 authors.loc[idx1, 'author_id'] = next_id
