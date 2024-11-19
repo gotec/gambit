@@ -70,7 +70,7 @@ def lev_sim(s1, s2):
     return 1 - lev_dist(s1, s2)/max(len(s1), len(s2))
 
 
-def compare_rows(idx1, idx2, row1, row2, thresh=.90, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
+def compare_rows(idx1, idx2, row1, row2, thresh=.90, generic_usernames=[]):
     name_thresh = 2
     email_thresh = 3
 
@@ -136,7 +136,7 @@ def compare_rows(idx1, idx2, row1, row2, thresh=.90, generic_usernames=['git','g
 # -------------------------------------------------------------------
 
 
-def bird(authors, thresh=.95, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
+def bird(authors, thresh=.95, generic_usernames=[], show_pbar=True):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name'].apply(clean_name)
