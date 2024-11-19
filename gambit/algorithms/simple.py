@@ -9,7 +9,7 @@ def get_email_base(s):
     return s
 
 
-def compare_rows(idx1, idx2, row1, row2, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous']):
+def compare_rows(idx1, idx2, row1, row2, generic_usernames=[]):
     tresh = 3
 
     if (len(str(row1.name)) >= tresh) and (len(str(row2.name)) >= tresh) and (row1.name == row2.name):
@@ -27,7 +27,7 @@ def compare_rows(idx1, idx2, row1, row2, generic_usernames=['git','github','root
 # -------------------------------------------------------------------
 
 
-def simple(authors, generic_usernames=['git','github','root','admin','administrator','system','test','guest','anonymous'], show_pbar=True):
+def simple(authors, generic_usernames=[], show_pbar=True):
     authors.reset_index(inplace=True, drop=True)
 
     authors['name'] = authors['alias_name']
