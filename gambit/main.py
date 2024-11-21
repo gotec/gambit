@@ -34,4 +34,7 @@ def disambiguate_aliases(aliases, method='gambit', **quargs):
     else:
         raise Exception('invalid method')
 
+    if 'generic_usernames' not in quargs:
+        quargs['generic_usernames'] = ['git','github','root','admin','administrator','system','test','guest','anonymous']
+
     return disambig_fun(aliases, **quargs)
